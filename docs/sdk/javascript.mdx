@@ -1,0 +1,98 @@
+---
+title: JavaScript Quickstart
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# JavaScript Quickstart
+
+## 1. Install the SDK
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npm install @8xff/atm0s-media-js
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn add @8xff/atm0s-media-js
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="Pnpm">
+    ```bash
+    pnpm add @8xff/atm0s-media-js
+    ```
+  </TabItem>
+</Tabs>
+
+
+## 2. Connect to a Session
+
+```js
+import { createSession } from "@8xff/atm0s-media-js";
+
+const url = "<YOUR SERVER URL>";
+const token = "<YOUR SERVER TOKEN IF NEEDED>";
+
+// This can be any MediaStream
+const stream = await navigator.mediaDevices.getUserMedia({
+  audio: true,
+  video: true,
+});
+
+const session = createSession(url, {
+  roomId: "Echo Room",
+  peerId: "echo-client",
+  token,
+  // You can optionally initialize the session with senders and receivers so we won't have to keep
+  // updating SDP every time we create a new senders and receivers
+  senders: [
+    { stream: stream, name: "audio_main", kind: "audio" },
+    {
+      stream: stream,
+      name: "video_main",
+      kind: "video",
+      // Optionally, you can add simulcast
+      simulcast: true,
+    },
+  ],
+  receivers: {
+    audio: 1,
+    video: 1,
+  },
+});
+
+session.connect();
+```
+
+## 3. Consume the stream we just sent
+
+You can either
+
+```js title="Consume the stream directly using the peerId and their stream name"
+const consumer = session.createConsumerPair(peerId, "audio_main", "video_main");
+```
+
+or
+
+```ts title="Listen for stream received event"
+// In this specific case, we only have our own stream, so only `mystream_added` is triggered.
+// In the case of listening for an external stream, use `stream_added` instead
+session.on("mystream_added", (stream) => {
+  // The audio stream and video stream added events will be triggered separately
+
+  if (stream.kind === "video") {
+    const consumer = session.createConsumer(stream);
+    const stream = consumer.view();
+    // Do something with stream ...
+  }
+
+  if (stream.kind === "audio") {
+    const consumer = session.createConsumer(stream);
+    const stream = consumer.view();
+    // Do something with stream ...
+  }
+});
+```
