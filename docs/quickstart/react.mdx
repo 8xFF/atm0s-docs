@@ -1,0 +1,125 @@
+---
+title: React Quickstart
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# React Quickstart
+
+## 1. Install the SDK
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash npm install @8xff/atm0s-media-js @8xff/atm0s-media-react ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash yarn add @8xff/atm0s-media-js @8xff/atm0s-media-react ```
+  </TabItem>
+  <TabItem value="pnpm" label="Pnpm">
+    ```bash pnpm add @8xff/atm0s-media-js @8xff/atm0s-media-react ```
+  </TabItem>
+</Tabs>
+
+## 2. Create a session
+
+```jsx
+import { SessionProvider, StreamKinds } from "@8xff/atm0s-media-react";
+
+function App() {
+  return (
+    <SessionProvider
+      gateways="https://SAMPLE_GATEWAY_URL"
+      room="SAMPLE_ROOM_ID"
+      peer="SAMPLE_PEER_ID"
+      token="SAMPLE_TOKEN"
+      // The senders and receivers prop is optional
+      // You can optionally initialize the session with senders and receivers so we won't have to keep
+      // updating SDP every time we create a new senders and receivers
+      senders={[
+        { kind: StreamKinds.AUDIO, name: "audio_main" },
+        { kind: StreamKinds.VIDEO, name: "video_main", simulcast: true },
+      ]}
+      receivers={{
+        audio: 1,
+        video: 1,
+      }}
+    >
+      <div>...Do streaming here...</div>
+    </SessionProvider>
+  );
+}
+```
+
+## 3. Publish a stream
+
+```jsx
+const EchoPair = ({ peer }: { peer: string }) => {
+  const [stream, , streamChanger] = useSharedUserMedia("main_stream");
+  const micPublisher = usePublisher({
+    kind: StreamKinds.AUDIO,
+    name: "audio_main", // this will be used to identify the sender which the publisher will be using
+  });
+  const cameraPublisher = usePublisher({
+    kind: StreamKinds.VIDEO,
+    name: "video_main",
+  });
+
+  useEffect(() => {
+    if (stream) {
+      // add the stream to the publisher
+      micPublisher.switchStream(stream);
+      cameraPublisher.switchStream(stream);
+
+      return () => {
+        micPublisher.switchStream(null);
+        cameraPublisher.switchStream(null);
+      };
+    }
+  }, [stream, micPublisher, cameraPublisher]);
+};
+```
+
+## 4. Consume stream from a peer
+
+```jsx
+const EchoConsumer = ({ peer }: { peer: string }) => {
+  const consumer = useConsumerPair(peer, "audio_main", "video_main");
+
+  return (
+    <div>
+      <VideoViewer stream={consumer} />
+    </div>
+  );
+};
+```
+
+## 5. Put it all together
+
+```jsx
+function App() {
+  const peer = "SAMPLE_PEER_ID";
+  return (
+    <SessionProvider
+      gateways="https://SAMPLE_GATEWAY_URL"
+      room="SAMPLE_ROOM_ID"
+      peer={peer}
+      token="SAMPLE_TOKEN"
+      // The senders and receivers prop is optional
+      // You can optionally initialize the session with senders and receivers so we won't have to keep
+      // updating SDP every time we create a new senders and receivers
+      senders={[
+        { kind: StreamKinds.AUDIO, name: "audio_main" },
+        { kind: StreamKinds.VIDEO, name: "video_main", simulcast: true },
+      ]}
+      receivers={{
+        audio: 1,
+        video: 1,
+      }}
+    >
+      <EchoPair peer={peer} />
+      <EchoConsumer peer={peer} />
+    </SessionProvider>
+  );
+}
+```

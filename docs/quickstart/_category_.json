@@ -1,0 +1,10 @@
+{
+  "label": "Quickstart",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "title": "Quickstart Guides",
+    "description": "Let's get started integrating Atm0s Media Server with your favourite language and platform in less than 5 minutes.",
+    "slug": "/quickstart"
+  }
+}

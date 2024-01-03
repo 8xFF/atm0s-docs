@@ -8,15 +8,15 @@ const config: Config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://8xFF.github.io/atm0s-docs",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "8xff", // Usually your GitHub org/user name.
-  projectName: "atm0s-media-server", // Usually your repo name.
+  organizationName: "8xFF", // Usually your GitHub org/user name.
+  projectName: "atm0s-docs", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -68,7 +68,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "SDKs",
+          label: "Docs",
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {

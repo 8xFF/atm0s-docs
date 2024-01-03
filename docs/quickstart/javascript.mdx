@@ -2,8 +2,8 @@
 title: JavaScript Quickstart
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # JavaScript Quickstart
 
@@ -11,22 +11,15 @@ import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-    ```bash
-    npm install @8xff/atm0s-media-js
-    ```
+    ```bash npm install @8xff/atm0s-media-js ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
-    ```bash
-    yarn add @8xff/atm0s-media-js
-    ```
+    ```bash yarn add @8xff/atm0s-media-js ```
   </TabItem>
   <TabItem value="pnpm" label="Pnpm">
-    ```bash
-    pnpm add @8xff/atm0s-media-js
-    ```
+    ```bash pnpm add @8xff/atm0s-media-js ```
   </TabItem>
 </Tabs>
-
 
 ## 2. Connect to a Session
 
@@ -78,7 +71,7 @@ const consumer = session.createConsumerPair(peerId, "audio_main", "video_main");
 or
 
 ```ts title="Listen for stream received event"
-// In this specific case, we only have our own stream, so only `mystream_added` is triggered.
+// Note: In this specific case, we only have our own stream, so only `mystream_added` is triggered.
 // In the case of listening for an external stream, use `stream_added` instead
 session.on("mystream_added", (stream) => {
   // The audio stream and video stream added events will be triggered separately

@@ -1,0 +1,52 @@
+---
+title: "Publishing a stream"
+---
+
+# Publishing a stream
+
+## Publish a stream after creating a session
+
+To publish a stream, you just need to create a publisher and pass it a stream to publish. The publisher will automatically start publishing the stream to the server.
+
+```js title="Javascript"
+const stream = await navigator.mediaDevices.getUserMedia({
+  video: true,
+});
+const config = { name: "video_main", kind: "video" };
+const publisher = session.createPublisher(config);
+publisher.switch(stream); // add the stream to the publisher
+```
+
+## Publish a stream when creating a session
+
+You can also publish a stream when creating a session. To do so, you need to pass the stream to the senders array of the session.
+
+```js title="Javascript"
+const stream = .. // get the stream
+const session = createSession(gatewayUrls, {
+  senders: [
+    {
+      stream: stream,
+      name: "video_main",
+      kind: "video",
+    },
+  ],
+});
+```
+
+## Screen sharing
+
+To share your screen, you can use the `getDisplayMedia()` method from `mediaDevices` API to acquire the mediastream. Then in the sender/publisher config, you need to set the `screen` property to `true`.
+
+```js title="Javascript"
+const config = { name: "screen", kind: "video", screen: true };
+```
+
+## Simulcast
+
+Simulcast is a technique that allows you to send multiple versions of the same video stream at different resolutions and bitrates. This allows the receiver to choose the best version of the stream based on their network conditions.
+You can enable simulcast by setting the `simulcast` property to `true` in the sender/publisher config.
+
+```js title="Javascript"
+const config = { name: "video_main", kind: "video", simulcast: true };
+```
