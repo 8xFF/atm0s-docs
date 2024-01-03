@@ -3,7 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: "Atm0s",
+  title: "Atm0s Media Server",
   tagline: "Global-Scale Media Server written in Rust (WebRTC/RTMP/SIP)",
   favicon: "img/favicon.ico",
 
@@ -11,12 +11,12 @@ const config: Config = {
   url: "https://8xFF.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/atm0s-docs",
+  baseUrl: "/media-docs",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "8xFF", // Usually your GitHub org/user name.
-  projectName: "atm0s-docs", // Usually your repo name.
+  projectName: "media-docs", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -99,7 +99,7 @@ const config: Config = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/8xff/atm0s-docs",
+              href: "https://github.com/8xff/media-docs",
             },
           ],
         },
