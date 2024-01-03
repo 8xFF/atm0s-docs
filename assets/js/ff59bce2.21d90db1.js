@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkatm_0_s_docs=self.webpackChunkatm_0_s_docs||[]).push([[5121],{9716:s=>{s.exports=JSON.parse('{"label":"hola","permalink":"/media-docs/blog/tags/hola","allTagsPath":"/media-docs/blog/tags","count":1,"unlisted":false}')}}]);
