@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkatm_0_s_docs=self.webpackChunkatm_0_s_docs||[]).push([[2818],{1298:s=>{s.exports=JSON.parse('{"label":"docusaurus","permalink":"/atm0s-docs/blog/tags/docusaurus","allTagsPath":"/atm0s-docs/blog/tags","count":4,"unlisted":false}')}}]);

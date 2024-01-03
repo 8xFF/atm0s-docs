@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkatm_0_s_docs=self.webpackChunkatm_0_s_docs||[]).push([[7794],{2872:e=>{e.exports=JSON.parse('{"title":"Concepts","slug":"/category/concepts","permalink":"/docs/category/concepts","navigation":{"previous":{"title":"Introduction","permalink":"/docs/intro"},"next":{"title":"Core Primitives","permalink":"/docs/concepts/core"}}}')}}]);

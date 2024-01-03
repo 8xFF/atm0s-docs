@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkatm_0_s_docs=self.webpackChunkatm_0_s_docs||[]).push([[3840],{8564:e=>{e.exports=JSON.parse('{"title":"Server","slug":"/category/server","permalink":"/docs/category/server","navigation":{"previous":{"title":"Publishing a stream","permalink":"/docs/client/publishing"},"next":{"title":"Installation","permalink":"/docs/server/installation"}}}')}}]);

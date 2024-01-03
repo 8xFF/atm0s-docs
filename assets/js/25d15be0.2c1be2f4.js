@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkatm_0_s_docs=self.webpackChunkatm_0_s_docs||[]).push([[5430],{4933:s=>{s.exports=JSON.parse('{"permalink":"/atm0s-docs/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
